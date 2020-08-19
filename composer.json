@@ -1,0 +1,17 @@
+{
+    "name": "hobby/wxMsgCrypt",
+    "description": "wxMsgCrypt lib",
+    "type": "library",
+    "keywords": ["wechat", "extension"],
+    "homepage": "https://github.com/maojindao55/wxMsgCrypt",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hobby",
+            "email": "hobby0524@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    }
+}
