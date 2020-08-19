@@ -1,5 +1,5 @@
 {
-    "name": "hobby/wxMsgCrypt",
+    "name": "hobby/wx-msg-crypt",
     "description": "wxMsgCrypt lib",
     "type": "library",
     "keywords": ["wechat", "extension"],
