@@ -81,7 +81,7 @@ class Prpcrypt
 			//使用自定义的填充方式对明文进行补位填充
 			$pkc_encoder = new PKCS7Encoder;
 			$text = $pkc_encoder->encode($text);
-			$encrypted = openssl_encrypt($text, 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA, $iv);
+			$encrypted = openssl_encrypt($text, 'AES-256-CBC', $this->key, OPENSSL_ZERO_PADDING, $iv);
 			return array(ErrorCode::$OK, base64_encode($encrypted));
 		} catch (Exception $e) {
 			//print $e;
@@ -100,7 +100,7 @@ class Prpcrypt
 		try {
 			$iv = substr($this->key, 0, 16);
 			//使用BASE64对需要解密的字符串进行解码
-			$decrypted = openssl_decrypt(base64_decode($encrypted), 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA, $iv);
+			$decrypted = openssl_decrypt($encrypted, 'AES-256-CBC', $this->key, OPENSSL_ZERO_PADDING, $iv);
 		} catch (Exception $e) {
 			return array(ErrorCode::$DecryptAESError, null);
 		}
