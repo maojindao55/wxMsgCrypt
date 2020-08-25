@@ -82,7 +82,7 @@ class Prpcrypt
 			$pkc_encoder = new PKCS7Encoder;
 			$text = $pkc_encoder->encode($text);
 			$encrypted = openssl_encrypt($text, 'AES-256-CBC', $this->key, OPENSSL_ZERO_PADDING, $iv);
-			return array(ErrorCode::$OK, base64_encode($encrypted));
+			return array(ErrorCode::$OK, $encrypted);
 		} catch (Exception $e) {
 			//print $e;
 			return array(ErrorCode::$EncryptAESError, null);
