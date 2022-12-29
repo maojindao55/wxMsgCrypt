@@ -34,14 +34,14 @@ class WXBizMsgCrypt
 	*/
     public function VerifyURL($sMsgSignature, $sTimeStamp, $sNonce, $sEchoStr, &$sReplyEchoStr)
     {
-        if (strlen($this->m_sEncodingAesKey) != 43) {
+        if (strlen($this->encodingAesKey) != 43) {
             return ErrorCode::$IllegalAesKey;
         }
 
-        $pc = new Prpcrypt($this->m_sEncodingAesKey);
+        $pc = new Prpcrypt($this->encodingAesKey);
         //verify msg_signature
         $sha1 = new SHA1;
-        $array = $sha1->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $sEchoStr);
+        $array = $sha1->getSHA1($this->token, $sTimeStamp, $sNonce, $sEchoStr);
         $ret = $array[0];
 
         if ($ret != 0) {
@@ -53,7 +53,7 @@ class WXBizMsgCrypt
             return ErrorCode::$ValidateSignatureError;
         }
 
-        $result = $pc->decrypt($sEchoStr, $this->m_sReceiveId);
+        $result = $pc->decrypt($sEchoStr, $this->appId);
         if ($result[0] != 0) {
             return $result[0];
         }
